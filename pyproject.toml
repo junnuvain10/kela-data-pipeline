@@ -1,0 +1,21 @@
+[project]
+name = "kela-data-pipeline"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "junnuvain10", email = "junnu144@gmail.com" }
+]
+requires-python = ">=3.15"
+dependencies = [
+    "faker>=40.44.0",
+    "psycopg2-binary>=2.9.13",
+    "python-dotenv>=1.2.4",
+]
+
+[project.scripts]
+kela-data-pipeline = "kela_data_pipeline:main"
+
+[build-system]
+requires = ["uv_build>=0.13.6,<0.14.0"]
+build-backend = "uv_build"
