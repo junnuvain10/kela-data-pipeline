@@ -17,7 +17,7 @@ wheels = [
 [[package]]
 name = "kela-data-pipeline"
 version = "0.1.0"
-source = { editable = "." }
+source = { virtual = "." }
 dependencies = [
     { name = "faker" },
     { name = "psycopg2-binary" },
