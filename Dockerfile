@@ -16,6 +16,7 @@ RUN uv sync --frozen
 # Copy source code and the execution script
 COPY src/ ./src/
 COPY sql/ ./sql/
+COPY tests/ ./tests/
 COPY run_elt.sh ./
 
 # Grant execution permissions for the script

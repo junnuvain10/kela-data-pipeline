@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Fact table composite PK uniqueness (date + municipality + benefit)",
+    "type": "uniqueness",
+    "table": "fact_benefit_payment",
+    "column": "date_id, municipality_code, benefit_id"
+  },
+  {
+    "name": "Fact table total_amount completeness",
+    "type": "not_null",
+    "table": "fact_benefit_payment",
+    "column": "total_amount"
+  },
+  {
+    "name": "Fact-Dimension referential integrity (Municipality)",
+    "type": "referential_integrity",
+    "table": "fact_benefit_payment",
+    "column": "municipality_code",
+    "ref_table": "dim_municipality",
+    "ref_column": "municipality_code"
+  }
+]

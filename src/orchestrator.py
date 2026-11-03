@@ -26,6 +26,7 @@ def main():
     run_script("src/setup_database.py")
     run_script("src/generate_data.py")
     run_script("src/elt_process.py")
+    run_script("tests/test_data_quality.py")
     
     end_time = time.time()  # Stop the clock
     duration = end_time - start_time
