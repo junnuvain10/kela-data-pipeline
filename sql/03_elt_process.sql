@@ -3,8 +3,6 @@
 -- Transfers and aggregates data from the OLTP schema to the OLAP schema (Star Schema)
 -- ==============================================================================
 
-BEGIN;
-
 -- 1. Truncate analytical tables (Fact table first for referential integrity)
 TRUNCATE TABLE fact_benefit_payment CASCADE;
 TRUNCATE TABLE dim_date CASCADE;
@@ -48,5 +46,3 @@ GROUP BY
     CAST(TO_CHAR(pt.payment_date, 'YYYYMM') AS INT),
     c.municipality_code,
     pt.benefit_id;
-
-COMMIT;
