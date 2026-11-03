@@ -3,6 +3,9 @@ from datetime import date, timedelta
 from faker import Faker
 from psycopg2.extras import execute_values
 from database_connection import get_connection
+from logger import get_logger
+
+logger = get_logger(__name__)
 
 # Initialize Faker with Finnish locale for authentic names and SSNs
 fake = Faker('fi_FI')
@@ -189,7 +192,7 @@ def insert_customers(conn) -> list:
         customer_ids = [row[0] for row in cur.fetchall()]
         
     conn.commit()
-    print(f"Inserted {NUM_CUSTOMERS} customers.")
+    logger.info(f"Inserted {NUM_CUSTOMERS} customers.")
     return customer_ids
 
 def insert_payments(conn, customer_ids):
@@ -215,7 +218,7 @@ def insert_payments(conn, customer_ids):
             payments
         )
     conn.commit()
-    print(f"Inserted {NUM_PAYMENTS} payment transactions.")
+    logger.info(f"Inserted {NUM_PAYMENTS} payment transactions.")
 
 def main():
     conn = None
@@ -224,14 +227,14 @@ def main():
         insert_reference_data(conn)
         customer_ids = insert_customers(conn)
         insert_payments(conn, customer_ids)
-        print("Data generation completed successfully.")
+        logger.info("Data generation completed successfully.")
     except Exception as e:
-        print(f"An error occurred during data generation: {e}")
+        logger.info(f"An error occurred during data generation: {e}")
     finally:
         # Guarantee that the connection is closed even if an error occurred above
         if conn is not None and not conn.closed:
             conn.close()
-            print("Database connection safely closed.")
+            logger.info("Database connection safely closed.")
 
 if __name__ == "__main__":
     main()
