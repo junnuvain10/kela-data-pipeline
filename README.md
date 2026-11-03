@@ -14,7 +14,7 @@ Raw operational data (simulated Kela benefit payments) is continuously generated
 
 **Solution:** An automated, containerized ELT pipeline that extracts raw data from the operational schema, strictly anonymizes it by dropping all PII, and transforms it into an optimized Star Schema (OLAP). By pre-aggregating data into specialized fact and dimension tables, the pipeline provides a secure, high-performance single source of truth for BI and reporting tools.
 
-# 🏗️ Architecture
+## 🏗️ Architecture
 
 ```mermaid
 flowchart LR
