@@ -6,12 +6,34 @@ services:
       POSTGRES_DB: ${DB_NAME}
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
+      TZ: Europe/Helsinki
     ports:
-      - "${DB_PORT}:5432"
+      - "5433:5432"
     volumes:
-      # Persist database data across container restarts
       - pgdata:/var/lib/postgresql/data
     restart: unless-stopped
+    # Verify that the database is fully ready to accept connections
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pipeline:
+    build: .
+    container_name: kela_python_pipeline
+    env_file: .env
+    environment:
+      # Override .env variables to connect via Docker's internal network
+      DB_HOST: postgres
+      DB_PORT: 5432
+      TZ: Europe/Helsinki
+    depends_on:
+      postgres:
+        condition: service_healthy # Wait until the postgres healthcheck passes
+    volumes:
+      # Map container logs to the local machine for easy access
+      - ./logs:/app/logs
 
 volumes:
   pgdata:
