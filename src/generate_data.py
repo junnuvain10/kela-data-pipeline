@@ -2,7 +2,7 @@ import random
 from datetime import date, timedelta
 from faker import Faker
 from psycopg2.extras import execute_values
-from database import get_connection
+from database_connection import get_connection
 
 # Initialize Faker with Finnish locale for authentic names and SSNs
 fake = Faker('fi_FI')
@@ -146,8 +146,8 @@ BENEFITS = [
     ('Äitiysavustus', 'Kuukausi'),
 ]
 
-NUM_CUSTOMERS = 1000
-NUM_PAYMENTS = 10000
+NUM_CUSTOMERS = 5000
+NUM_PAYMENTS = 50000
 
 def insert_reference_data(conn):
     """Inserts static dimension data: municipalities and benefits."""
@@ -163,7 +163,6 @@ def insert_reference_data(conn):
             BENEFITS
         )
     conn.commit()
-    print("Reference data (Municipalities, Benefits) inserted.")
 
 def insert_customers(conn) -> list:
     """Generates and inserts customer data, returning a list of customer IDs."""
@@ -219,7 +218,6 @@ def insert_payments(conn, customer_ids):
     print(f"Inserted {NUM_PAYMENTS} payment transactions.")
 
 def main():
-    print("Starting data generation process...")
     conn = None
     try:
         conn = get_connection()
