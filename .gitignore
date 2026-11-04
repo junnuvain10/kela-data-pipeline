@@ -15,5 +15,8 @@ wheels/
 # Logs
 logs/*.log
 
+# Exclude sample log file from being ignored
+!logs/sample_run.log
+
 # draw.io files
 *.drawio 

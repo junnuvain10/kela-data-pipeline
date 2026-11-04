@@ -1,0 +1,29 @@
+2026-11-04 20:40:56,720 - INFO - --- Kela Data Pipeline: Started ---
+2026-11-04 20:40:56,721 - INFO - Starting: src/setup_database.py
+2026-11-04 20:40:56,887 - INFO - Creating OLTP schema...
+2026-11-04 20:40:56,992 - INFO - Creating OLAP (Star) schema...
+2026-11-04 20:40:57,030 - INFO - Database schemas created successfully.
+2026-11-04 20:40:57,045 - INFO - Completed: src/setup_database.py
+
+2026-11-04 20:40:57,046 - INFO - Starting: src/generate_data.py
+2026-11-04 20:40:58,138 - INFO - Inserted 5000 customers.
+2026-11-04 20:41:02,057 - INFO - Inserted 50000 payment transactions.
+2026-11-04 20:41:02,059 - INFO - Data generation completed successfully.
+2026-11-04 20:41:02,060 - INFO - Database connection safely closed.
+2026-11-04 20:41:02,093 - INFO - Completed: src/generate_data.py
+
+2026-11-04 20:41:02,094 - INFO - Starting: src/elt_process.py
+2026-11-04 20:41:02,163 - INFO - Starting ELT transformation (OLTP -> OLAP)...
+2026-11-04 20:41:05,662 - INFO - ELT transformation completed successfully.
+2026-11-04 20:41:05,674 - INFO - Completed: src/elt_process.py
+
+2026-11-04 20:41:05,675 - INFO - Starting: tests/test_data_quality.py
+2026-11-04 20:41:05,735 - INFO - --- Running Dynamic Data Quality Checks ---
+2026-11-04 20:41:05,773 - INFO - [PASS] Fact table composite PK uniqueness (date + municipality + benefit)
+2026-11-04 20:41:05,776 - INFO - [PASS] Fact table total_amount completeness
+2026-11-04 20:41:05,781 - INFO - [PASS] Fact-Dimension referential integrity (Municipality)
+2026-11-04 20:41:05,782 - INFO - All Data Quality checks passed successfully!
+2026-11-04 20:41:05,795 - INFO - Completed: tests/test_data_quality.py
+
+2026-11-04 20:41:05,795 - INFO - --- Kela Data Pipeline: Completed Successfully ---
+2026-11-04 20:41:05,796 - INFO - Total execution time: 9.07 seconds
