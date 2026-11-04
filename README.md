@@ -16,31 +16,7 @@ Raw operational data (simulated Kela benefit payments) is continuously generated
 
 ## 🏗️ Architecture
 
-```mermaid
-flowchart LR
-
-    subgraph Source ["<span style='font-size:24px'><b>Source</b></span>"]
-        A["<b style='font-size:20px'><u>Data Generation</b></u><br/><small>Python / Faker</small>"]
-        B[("<b style='font-size:20px'><u>OLTP Source</b></u><br/><small>PostgreSQL</small>")]
-    end
-
-    subgraph ELT ["<span style='font-size:24px'><b>ELT</b></span>"]
-        D("<b style='font-size:20px'><u>Transformation</b></u><br/><small>SQL (In-Database)</small>")
-    end
-
-    subgraph Target ["<span style='font-size:24px'><b>Data Warehouse</b></span>"]
-        F[("<b style='font-size:20px'><u>Star Schema (OLAP)</b></u><br/><small>PostgreSQL</small>")]
-    end
-
-    subgraph Analytics ["<span style='font-size:24px'><b>Consumption</b></span>"]
-        G["<b style='font-size:20px'><u>Analytical Queries</b></u><br/><small>BI / Reporting</small>"]
-    end
-
-    A -->|Insert| B
-    B -->|Extract| D
-    D -->|Load & Transform| F
-    F -->|Serve| G
-```
+![Architecture](docs/architecture.png)
 
 ## 🛠 Tech Stack
 
