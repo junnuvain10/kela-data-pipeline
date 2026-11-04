@@ -18,6 +18,24 @@ Raw operational data (simulated Kela benefit payments) is continuously generated
 
 ![Architecture](docs/architecture.png)
 
+## 🗄️ Data Models
+
+This project demonstrates the fundamental data engineering process of transforming data from a normalized operational system into an analytical schema.
+
+### 1. OLTP Database (Source)
+The source database simulates an operational system (OLTP) that handles daily transactions.
+* **Structure:** Normalized relational model.
+* **Purpose:** Optimized for fast data entry (inserts/updates) and maintaining strict data integrity during daily benefit processing.
+
+![OLTP ER Diagram](docs/OLTP.png)
+
+### 2. OLAP Data Warehouse (Target)
+The target data warehouse is modeled using a Star Schema (OLAP) to serve analytical needs.
+* **Structure:** Denormalized into a central Fact table (benefit payments) surrounded by descriptive Dimension tables (e.g., Date, Customer, Municipality).
+* **Purpose:** Optimized for fast read performance, complex aggregations, and Business Intelligence (BI) reporting.
+
+![OLAP ER Diagram](docs/OLAP.png)
+
 ## 🛠 Tech Stack
 
 - **Database:** PostgreSQL (Containerized, hosting both OLTP source and OLAP target schemas)
