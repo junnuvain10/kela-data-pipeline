@@ -74,6 +74,11 @@ kela-data-pipeline/
 
 ## 🚀 Quick Start
 
+### 📋 Prerequisites
+Before you begin, ensure you have the following installed:
+* **Docker & Docker Compose** (e.g., Docker Desktop installed and running in the background).
+* **Git**: Required to clone the repository.
+
 ### 1. Clone the repository
 ```bash
 git clone https://github.com/yourusername/kela-data-pipeline.git
