@@ -149,7 +149,7 @@ SELECT
 FROM fact_benefit_payment f
 JOIN dim_municipality m ON f.municipality_code = m.municipality_code
 GROUP BY m.municipality_name
-ORDE
+ORDER BY total_regional_payments DESC;
 ```
 
 **3. Regional breakdown for a specific benefit (e.g., analyzing only "Työttömyysturva" / Unemployment benefit):** 
